@@ -5,6 +5,7 @@ import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
+import Image from 'next/image';
 import { API_BASE } from '@/lib/config';
 
 export default function RegisterPage() {
@@ -38,40 +39,67 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-[url('/qqq.jpg')] bg-cover overflow-hidden">
-      <Card className="absolute w-full max-w-sm p-6 cursor-pointer hover:scale-105 transition">
+    <div className="relative w-full min-h-screen flex flex-col items-center justify-center text-white px-4 font-sans">
+      {/* Background Image */}
+      <Image
+        src="/qqq.jpg"
+        alt="Background"
+        fill
+        style={{ objectFit: 'cover' }}
+        quality={80}
+        priority
+      />
 
-        <CardContent>
-          <h1 className="text-xl font-bold mb-4">Register</h1>
+      {/* Dark Overlay */}
+      <div
+        className="absolute inset-0 bg-black bg-opacity-50"
+        aria-hidden="true"
+      />
 
-          <form onSubmit={handleRegister} className="space-y-4">
-            <Input placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input type="password" placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+      {/* Content (on top of overlay) */}
+      <div className="relative z-10 w-full max-w-sm">
+        <Card className="bg-white/90 backdrop-blur-md shadow-xl p-6 rounded-xl transition-transform hover:scale-[1.05] cursor-pointer">
+          <CardContent>
+            <h1 className="text-xl font-bold mb-4 text-black">Register</h1>
 
-            {/* AGE FIELD ADDED HERE */}
-            <Input type="number" placeholder="Age"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
+            <form onSubmit={handleRegister} className="space-y-4">
+              <Input
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <Input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+              {/* Age Field */}
+              <Input
+                type="number"
+                placeholder="Age"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              />
 
-            <Button className="w-full" type="submit">Register</Button>
-          </form>
+              {error && <p className="text-red-600 text-sm">{error}</p>}
 
-          <Button variant="link" className="mt-2 w-full"
-            onClick={() => router.push('/login')}>
-            Back to Login
-          </Button>
-        </CardContent>
+              <Button className="w-full" type="submit">
+                Register
+              </Button>
+            </form>
 
-      </Card>
+            <Button
+              variant="link"
+              className="mt-2 w-full text-black"
+              onClick={() => router.push('/login')}
+            >
+              Back to Login
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

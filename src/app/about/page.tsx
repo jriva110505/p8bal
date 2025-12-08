@@ -2,169 +2,75 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div style={{ width: "100%", position: "relative" }}>
-      {/* Top Half Background */}
-      <div
-        style={{
-          position: "relative",
-          height: "50vh",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          color: "white",
-          overflow: "hidden",
-        }}
-      >
-        <Image
-          src="/as.jpg"
-          alt="Top Background"
-          fill
-          style={{ objectFit: "cover" }}
-          priority
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            zIndex: 1,
-          }}
-        />
+    <div className="relative w-full min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white overflow-hidden">
 
-        {/* About Me Content */}
-        <div style={{ position: "relative", zIndex: 2 }}>
-          <h2 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1.5rem", color: "white" }}>
-            About Me
-          </h2>
-
-          {/* Two Images */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "2rem" }}>
-            {/* Personal Photo */}
-            <div style={{ width: "200px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  boxShadow: "0 0 15px rgba(255,255,255,0.4)",
-                }}
-              >
-                <Image src="/1.jpg" alt="Your Photo" width={200} height={200} />
-              </div>
-              <p style={{ marginTop: "0.5rem", fontWeight: "bold" }}>Jerome Riva</p>
-            </div>
-
-            {/* NCF Logo */}
-            <div style={{ width: "200px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  boxShadow: "0 0 15px rgba(0,243,65,0.4)",
-                }}
-              >
-                <Image src="/ncf.webp" alt="NCF Logo" width={200} height={200} />
-              </div>
-              <p style={{ marginTop: "0.5rem", fontWeight: "bold" }}>NCF - Present</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Back Button */}
+      {/* BACK BUTTON */}
       <a
         href="/"
-        style={{
-          position: "fixed",
-          top: "20px",
-          right: "20px",
-          color: "white",
-          fontSize: "1.1rem",
-          textDecoration: "none",
-          fontWeight: "bold",
-          zIndex: 20,
-          padding: "8px 14px",
-          border: "2px solid white",
-          borderRadius: "6px",
-          backdropFilter: "blur(3px)",
-          backgroundColor: "rgba(0,0,0,0.4)",
-        }}
+        className="fixed top-6 right-6 px-5 py-2 border border-white/80 
+        rounded-xl bg-white/10 backdrop-blur-md font-semibold hover:bg-white/20 
+        transition z-50"
       >
         ← Back
       </a>
 
-      {/* Bottom Half */}
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          padding: "4rem 2rem",
-          color: "white",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "900px",
-            margin: "0 auto",
-            borderRadius: "20px",
-            textAlign: "center",
-            backgroundColor: "rgba(32, 29, 29, 0.7)",
-            padding: "2rem",
-            backdropFilter: "blur(6px)",
-          }}
-        >
-          {/* About Text */}
-          <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-            I am a dedicated Bachelor of Science in Information Technology student at Naga College Foundation (NCF),
-            committed to developing strong technical and analytical skills in the field of computing. My academic journey
-            has allowed me to explore core areas such as programming, web development, and system operations—strengthening my 
-            ability to approach challenges with logic, creativity, and precision.
+      {/* PAGE WRAPPER */}
+      <div className="flex flex-col lg:flex-row gap-10 px-10 lg:px-20 py-20">
+
+        {/* LEFT PANEL – PROFILE */}
+        <div className="lg:w-1/3 flex flex-col items-center text-center">
+          <div className="w-[260px] h-[260px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/30">
+            <Image src="/balote.jpg" alt="Profile" width={260} height={260} />
+          </div>
+
+          <h1 className="mt-6 text-4xl font-bold tracking-wide">
+            Jerome Riva
+          </h1>
+
+          <p className="opacity-80 mt-2 text-lg">BSIT Student • NCF</p>
+
+          {/* SCHOOL LOGO */}
+          <div className="mt-6 w-[120px] h-[120px] rounded-full overflow-hidden border-2 border-green-400 shadow-lg">
+            <Image src="/ncf.webp" alt="NCF" width={120} height={120} />
+          </div>
+
+          <p className="mt-2 font-semibold text-green-300">Naga College Foundation</p>
+        </div>
+
+        {/* RIGHT PANEL – ABOUT ME */}
+        <div className="lg:w-2/3 bg-white/10 backdrop-blur-md p-10 rounded-2xl shadow-xl border border-white/20">
+          <h2 className="text-3xl font-bold mb-4">Hello! im JAN AYALE BALOTE:)</h2>
+
+          <p className="text-lg leading-relaxed mb-6">
+            I’m tall and full of energy, always ready to sing my heart out, 
+            dance to any beat, and travel to new places. Music and adventure
+             are the things that keep me alive and inspired.
           </p>
 
-          <p style={{ fontSize: "1.2rem", marginBottom: "2rem" }}>
-            Beyond my coursework, I actively participate in school activities and events that promote leadership, teamwork,
-            and personal growth. I aim to continue building my technical expertise while contributing positively to every project and team I am part of.
-          </p>
+          <h3 className="text-2xl font-bold mt-10 mb-4">My pets</h3>
 
-          {/* Achievements */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: "1rem",
-              flexWrap: "wrap",
-              marginTop: "3rem",
-            }}
-          >
-            {[ 
-              { src: "/ach1.jpg", title: "Best Coding Project", year: "2023" },
-              { src: "/ach2.jpg", title: "Web Development Award", year: "2022" },
-              { src: "/ach3.jpg", title: "IT Excellence", year: "2021" },
-            ].map((ach, i) => (
-              <div key={i} style={{ textAlign: "center", flex: "1 1 30%" }}>
-                <div style={{ width: "100%", height: "150px", overflow: "hidden", borderRadius: "10px" }}>
-                  <Image
-                    src={ach.src}
-                    alt={ach.title}
-                    width={500}
-                    height={150}
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <h3 style={{ marginTop: "0.5rem", fontSize: "1.1rem" }}>{ach.title}</h3>
-                <p style={{ fontSize: "0.9rem", opacity: 0.8 }}>{ach.year}</p>
-              </div>
+          {/* ACHIEVEMENTS PHOTOS */}
+        <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { src: "/dog.jpg", alt: "Achievement 1" },
+            { src: "/cat.jpg", alt: "Achievement 2" },
+            { src: "/bird.jpg", alt: "Achievement 3" },
+          ].map((photo, i) => (
+            <div
+              key={i}
+              className="w-full h-[180px] rounded-xl overflow-hidden shadow-lg border border-white/10 hover:scale-105 transition-transform"
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={500}
+                height={180}
+                className="object-cover w-full h-full"
+              />
+            </div>
             ))}
           </div>
+
         </div>
       </div>
     </div>

@@ -1,31 +1,57 @@
-"use client";
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useState, FormEvent } from 'react';
+import { saveToken } from '@/lib/auth';
 import Image from "next/image";
+import { API_BASE } from '@/lib/config';
 
-export default function Home() {
+export default function LoginPage() {
+  const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
-  };
+  async function handleLogin(e: FormEvent) {
+    e.preventDefault();
+    setError('');
+
+    const res = await fetch(`${API_BASE}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.message || 'Login failed');
+      return;
+    }
+
+    saveToken(data.accessToken);
+    router.push('/dashboard');
+  }
 
   return (
-    <div
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-        width: "100%",
-        overflow: "hidden",
-        color: "white",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
+    <div className="relative min-h-screen w-full bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white p-10 overflow-hidden">
+
+      {/* Dark overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "rgba(0, 0, 0, 0.45)",
+        }}
+      />
 
       {/* Navigation Menu */}
       <nav
         style={{
           position: "fixed",
           top: 20,
-          right: 30,
+          left: "50%",
+          transform: "translateX(-50%)",
           display: "flex",
           gap: "1rem",
           zIndex: 10,
@@ -39,115 +65,80 @@ export default function Home() {
               color: "white",
               textDecoration: "none",
               fontWeight: "700",
-              padding: "10px 18px",
+              padding: "10px 20px",
               borderRadius: "12px",
               border: "2px solid rgba(255,255,255,0.7)",
               backdropFilter: "blur(5px)",
-              transition: "all 0.3s ease",
               backgroundColor: "rgba(0,0,0,0.35)",
+              transition: "0.3s",
             }}
           >
             {item}
           </a>
         ))}
-
-        {/* 🔥 Logout Button */}
-        <button
-          onClick={handleLogout}
-          style={{
-            color: "white",
-            fontWeight: "700",
-            padding: "10px 18px",
-            borderRadius: "12px",
-            border: "2px solid rgba(255,255,255,0.7)",
-            backgroundColor: "rgba(255,0,0,0.45)",
-            backdropFilter: "blur(5px)",
-            cursor: "pointer",
-            transition: "0.3s",
-          }}
-        >
-          Logout
-        </button>
       </nav>
 
-{/* Background Image */}
-      <Image
-        src="/qqq.jpg"
-        alt="Background"
-        fill
-        style={{ objectFit: "cover" }}
-        quality={80}
-        priority
-      />
+      {/* LOGIN BUTTON (top-right) */}
+      <button
+        onClick={() => (window.location.href = "/login")}
+        style={{
+          position: "fixed",
+          top: 20,
+          right: 30,
+          padding: "10px 25px",
+          fontWeight: "700",
+          color: "white",
+          borderRadius: "12px",
+          border: "2px solid rgba(255,255,255,0.7)",
+          backgroundColor: "rgba(0,0,0,0.35)",
+          backdropFilter: "blur(5px)",
+          cursor: "pointer",
+          transition: "0.3s",
+          zIndex: 10,
+        }}
+      >
+        LOG IN
+      </button>
 
-
-      {/* Content Container */}
+      {/* Content Section */}
       <div
         style={{
           position: "relative",
           zIndex: 1,
           display: "flex",
-          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
           minHeight: "100vh",
           padding: "2rem",
-          gap: "3rem",
-          backgroundColor: "rgba(0, 0, 0, 0.45)",
+          gap: "4rem",
         }}
       >
-        {/* Profile Picture */}
-        <div
-          style={{
-            borderRadius: "50%",
-            overflow: "hidden",
-            width: "450px",
-            height: "450px",
-            boxShadow: "0 0 20px rgba(255, 255, 255, 0.4)",
-            flexShrink: 0,
-          }}
-        >
-          <Image src="/1.webp" alt="Jerome Riva" width={450} height={450} />
+        {/* Left Side Text */}
+        <div className="lg:w-1/2 text-center lg:text-left">
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-white mb-4">
+            WELCOME TO MY <br /> PERSONAL WEB
+          </h1>
+          <p className="text-lg lg:text-xl font-light text-white/80">
+            Jan Ayale Balote • BSIT-2B
+          </p>
         </div>
 
-        {/* Text Section */}
-        <div style={{ maxWidth: "600px", textAlign: "left" }}>
-          <h1 style={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem" }}>
-            Mr. Jerome Riva
-          </h1>
-          <p style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
-            Hi! I’m Jerome E. Riva, a BSIT student from Naga College Foundation, Inc. 
-            Welcome to my personal page!
-          </p>
-
-          <div style={{ display: "flex", gap: "1.5rem", fontSize: "1.1rem" }}>
-            <a
-              href="https://web.facebook.com/Jerome.Riva.009"
-              target="_blank"
-              style={{
-                color: "#0A66C2",
-                textDecoration: "none",
-                padding: "8px 16px",
-                borderRadius: "8px",
-                border: "2px solid #0A66C2",
-                backdropFilter: "blur(3px)",
-              }}
-            >
-              Facebook
-            </a>
-            <a
-              href="mailto:rivajerome00@gmail.com"
-              style={{
-                color: "#ff4c4c",
-                textDecoration: "none",
-                padding: "8px 16px",
-                borderRadius: "8px",
-                border: "2px solid #ff4c4c",
-                backdropFilter: "blur(3px)",
-              }}
-            >
-              Email
-            </a>
+        {/* Right Side Profile Photo with Glow */}
+        <div className="lg:w-1/2 flex justify-center">
+          <div
+            className="w-96 h-96 rounded-full border-8 overflow-hidden shadow-2xl"
+            style={{
+              borderColor: "#7bbfc4ff",
+              boxShadow: "0 0 30px #62aaafff, 0 0 60px #566162ff, 0 0 90px #00f0ff",
+            }}
+          >
+            <Image
+              src="/balote.jpg"
+              alt="Profile"
+              width={384}
+              height={384}
+              className="object-cover w-full h-full"
+            />
           </div>
         </div>
       </div>

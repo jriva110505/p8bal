@@ -2,201 +2,101 @@ import Image from "next/image";
 
 export default function Education() {
   return (
-    <div
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-        width: "100%",
-        overflow: "hidden",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "2rem",
-      }}
-    >
-      {/* Background Image */}
-      <Image
-        src="/qqq.jpg"
-        alt="Background"
-        fill
-        style={{ objectFit: "cover" }}
-        priority
-      />
-
-      {/* Dark Overlay */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.65)",
-        }}
-      />
+    <div className="relative w-full min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white overflow-hidden p-10">
 
       {/* BACK BUTTON */}
       <a
         href="/"
-        style={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          color: "white",
-          fontSize: "1.2rem",
-          fontWeight: "bold",
-          zIndex: 10,
-          padding: "8px 14px",
-          border: "2px solid white",
-          borderRadius: "6px",
-          backdropFilter: "blur(3px)",
-          textDecoration: "none",
-        }}
+        className="fixed top-6 right-6 px-5 py-2 border border-white/80 
+        rounded-xl bg-white/10 backdrop-blur-md font-semibold hover:bg-white/20 
+        transition z-50"
       >
         ← Back
       </a>
 
-      {/* Main Content */}
-      <section
-        style={{
-          position: "relative",
-          zIndex: 2,
-          width: "100%",
-          maxWidth: "900px",
-          color: "white",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "2.8rem",
-            marginBottom: "2.5rem",
-            textAlign: "center",
-            fontWeight: "800",
-            color: "white", // changed from gradient to white
-          }}
-        >
-          Education
-        </h2>
+      {/* TITLE */}
+      <h1 className="text-center text-5xl font-extrabold tracking-wider mb-16">
+        My Education Journey
+      </h1>
 
-        {/* College */}
-        <div
-          style={{
-            position: "relative",
-            padding: "2rem",
-            borderRadius: "14px",
-            marginBottom: "2rem",
-            borderLeft: "8px solid #06ed44ff",
-            display: "flex",
-            alignItems: "center",
-            gap: "1.5rem",
-            overflow: "hidden",
-            backdropFilter: "blur(8px)",
-            backgroundColor: "rgba(255,255,255,0.08)",
-            boxShadow: "0 0 20px rgba(6,237,68,0.3)",
-          }}
-        >
-          {/* Background Image */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundImage: "url('/ncf.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.3,
-              zIndex: 0,
-            }}
-          />
+      {/* TIMELINE */}
+      <div className="relative max-w-4xl mx-auto">
 
-          {/* Icon */}
-          <div
-            style={{
-              width: "110px",
-              height: "110px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              flexShrink: 0,
-              border: "3px solid #06ed44ff",
-              zIndex: 1,
-            }}
-          >
-            <Image src="/ncf.webp" alt="College Icon" width={110} height={110} />
-          </div>
+        {/* Vertical line */}
+        <div className="absolute left-1/2 top-0 w-[4px] h-full bg-white/20 rounded-full" />
 
-          {/* Text */}
-          <div style={{ zIndex: 1 }}>
-            <h3 style={{ fontSize: "1.8rem", marginBottom: "0.3rem" }}>
-              Bachelor of Science in Information Technology
-            </h3>
-            <p style={{ fontSize: "1.2rem", margin: 0, opacity: 0.9 }}>
-              Naga College Foundation (NCF)
-            </p>
-            <p style={{ marginTop: "0.5rem", opacity: 0.8 }}>Present</p>
+        {/* --- COLLEGE --- */}
+        <div className="relative flex items-center mb-24">
+          {/* Dot */}
+          <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-green-400 rounded-full shadow-lg shadow-green-500/50" />
+
+          {/* CARD */}
+          <div className="ml-auto w-[70%] bg-white/10 border border-white/20 
+            backdrop-blur-xl p-8 rounded-2xl shadow-xl hover:bg-white/20 transition">
+            
+            <div className="flex items-center gap-6">
+              <div className="w-[110px] h-[110px] rounded-xl overflow-hidden border-2 border-green-400 shadow-green-400 shadow-md">
+                <Image src="/ncf.webp" alt="NCF Logo" width={110} height={110} />
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-bold">Bachelor of Science in Information Technology</h2>
+                <p className="text-lg opacity-80">Naga College Foundation (NCF)</p>
+                <p className="mt-1 text-green-300 font-semibold">Present</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* High School */}
-        <div
-          style={{
-            position: "relative",
-            padding: "2rem",
-            borderRadius: "14px",
-            borderLeft: "8px solid #2900f6ff",
-            display: "flex",
-            alignItems: "center",
-            gap: "1.5rem",
-            overflow: "hidden",
-            backdropFilter: "blur(8px)",
-            backgroundColor: "rgba(255,255,255,0.08)",
-            boxShadow: "0 0 20px rgba(41,0,246,0.3)",
-          }}
-        >
-          {/* Background Image */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundImage: "url('/camhi.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.3,
-              zIndex: 0,
-            }}
-          />
+        {/* --- HIGH SCHOOL --- */}
+        <div className="relative flex items-center mb-24">
+          {/* Dot */}
+          <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full shadow-lg shadow-blue-700/50" />
 
-          {/* Icon */}
-          <div
-            style={{
-              width: "110px",
-              height: "110px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              flexShrink: 0,
-              border: "3px solid #2900f6ff",
-              zIndex: 1,
-            }}
-          >
-            <Image src="/camhi.png" alt="High School Icon" width={110} height={110} />
-          </div>
+          {/* CARD */}
+          <div className="mr-auto w-[70%] bg-white/10 border border-white/20 
+            backdrop-blur-xl p-8 rounded-2xl shadow-xl hover:bg-white/20 transition">
+            
+            <div className="flex items-center gap-6">
+              <div className="w-[110px] h-[110px] rounded-xl overflow-hidden border-2 border-blue-500 shadow-blue-400 shadow-md">
+                <Image src="/cararayan.jpg" alt="CSNHS Logo" width={110} height={110} />
+              </div>
 
-          {/* Text */}
-          <div style={{ zIndex: 1 }}>
-            <h3 style={{ fontSize: "1.8rem", marginBottom: "0.3rem" }}>
-              High School - Senior High School
-            </h3>
-            <p style={{ fontSize: "1.2rem", margin: 0, opacity: 0.9 }}>
-              Camarines Sur National High School (CSNHS)
-            </p>
-            <p style={{ marginTop: "0.5rem", opacity: 0.8 }}>Completed</p>
+              <div>
+                <h2 className="text-2xl font-bold">Senior High School</h2>
+                <p className="text-lg opacity-80">
+                  Cararayan national high school (CNHS)
+                </p>
+                <p className="mt-1 text-blue-300 font-semibold">Completed</p>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+
+ 
+        
+        
+        <div className="relative flex items-center mb-24">
+          <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-yellow-500 rounded-full shadow-lg shadow-yellow-700/50" />
+
+          <div className="ml-auto w-[70%] bg-white/10 border border-white/20 
+            backdrop-blur-xl p-8 rounded-2xl shadow-xl hover:bg-white/20 transition">
+            
+            <div className="flex items-center gap-6">
+              <div className="w-[110px] h-[110px] rounded-xl overflow-hidden border-2 border-yellow-400 shadow-yellow-400 shadow-md">
+                <Image src="/elem.png" alt="Elementary" width={110} height={110} />
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-bold">Elementary</h2>
+                <p className="text-lg opacity-80">Salogon elementary school San Jose camarines sur</p>
+                <p className="mt-1 text-yellow-300 font-semibold">Completed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
   );
 }
