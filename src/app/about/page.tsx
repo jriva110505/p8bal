@@ -24,7 +24,7 @@ export default function About() {
           </div>
 
           <h1 className="mt-6 text-4xl font-bold tracking-wide">
-            Jerome Riva
+            Jan Ayale Balote
           </h1>
 
           <p className="opacity-80 mt-2 text-lg">BSIT Student • NCF</p>
